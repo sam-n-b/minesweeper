@@ -1,64 +1,56 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
+//Generating a 5x5 board
 var board = {
-   cells: generateCells(5)
- }
-//     {
-//       row: 0,
-//       col: 0,
-//       isMine: false,
-//       hidden: true,
-//     },
-//     {
-//       row: 1,
-//       col: 0,
-//       isMine: false,
-//       hidden: true,
-//     },
-//     {
-//       row: 0,
-//       col: 1,
-//       isMine: false,
-//       hidden: true,
-//     },
-//     {
-//       row: 1,
-//       col: 1,
-//       isMine: false,
-//       hidden: true,
-//     },
-//   ]
+  cells: generateCells(5)
+}
+
+    // {
+    //   row: 0,
+    //   col: 0,
+    //   isMine: false,
+    //   hidden: true,
+    // },
+
 
 
 function generateCells (size) {
 
-  // create a cells array
-  // make a loop that automatically generate generateCells
-  // fill the cells aray with the generated cells
-  //return a cells array
+
   var cells = []
-
+//creates cells for rows (i) and columns (j)
   for (i = 0; i < size; i++ ) {
+   for (j = 0; j < size; j++){
+       cell = {
+              row: i,
+              col: j,
+              hidden: true,
+              // links isMine boolean to mineChance function
+              isMine: mineChance(),
+              
+              
+       }
 
-    for (j = 0; j < size; j++){
-        cell = {
-               row: i,
-               col: j,
-               isMine: false,
-               hidden: true,
-        }
-
-      cells.push(cell)
-    }
-  }
+     cells.push(cell)
+   }
+ }
 
   return cells
+};
+// creates 21% chance isMine boolean = true
+function mineChance (){
+  cellChance = Math.floor(Math.random() * 99); 
+  if (cellChance < 20) {return true}
+  else {return false}
 }
+
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
-board.cells[4].isMine = true
+
+//,
+//document.addEventListener("click", function checkForWin ())
 
 for (i = 0; i < board.cells.length; i++) {
   board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
@@ -74,7 +66,9 @@ for (i = 0; i < board.cells.length; i++) {
 // 2. Are all of the mines marked?
 
 
-function checkForWin (){}
+function checkForWin (){
+
+}
 //
 //
 //   // Once [ c ] is equal to visibleNonMines the user wins.
